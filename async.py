@@ -6,7 +6,7 @@ from fake_useragent import UserAgent
 import json
 
 data_fields = pd.read_csv("fields.csv")
-data_spec = pd.read_csv("spec.csv")
+data_spec = pd.read_csv("spec_uniq.csv")
 ua = UserAgent()
 
 all_vacancy = []
@@ -39,13 +39,17 @@ async def main():
             industry = row["name_field"]
             for index2, row2 in data_spec.iterrows():
                 
-                print(index, len(data_spec.iterrows()))
+                print(index, len(data_spec))
             
                 prof_role = row2["name_spec"]
                 id_spec = row2["id"]
                 print(id_field, id_spec)
                 print(industry, prof_role)
-                await fetch_vacancies(session, id_field, id_spec, industry, prof_role)
+                try:
+                	await fetch_vacancies(session, id_field, id_spec, industry, prof_role)
+                except Exception as e:
+                    with open("err.txt", "a", encoding="utf-8") as f_e:
+                        f_e.write(e, industry, prof_role, "\n")
 
     with open("vacancy_links.json", "w", encoding="utf-8") as fp:
         json.dump(all_vacancy, fp, ensure_ascii=False, indent=4)
