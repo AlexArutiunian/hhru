@@ -49,12 +49,12 @@ async def main():
                 print(industry, prof_role)
                 for page_id in range(1, 15):
                     print(index2, len(data_spec), page_id)
-		            try:
-		            	await fetch_vacancies(session, id_field, id_spec, industry, prof_role, page_id)
-		            except Exception as e:
-		                print("EXCEPTION ", e, industry, prof_role, "\n")
-		                with open("err.txt", "a", encoding="utf-8") as f_e:
-		                    f_e.write(e, industry, prof_role, "\n")
+                    try:
+                        await fetch_vacancies(session, id_field, id_spec, industry, prof_role, page_id)
+                    except Exception as e:
+                        print("EXCEPTION ", e, industry, prof_role, "\n")
+                        with open("err.txt", "a", encoding="utf-8") as f_e:
+                            f_e.write(e, industry, prof_role, "\n")
 
     with open("vacancy_links.json", "w", encoding="utf-8") as fp:
         json.dump(all_vacancy, fp, ensure_ascii=False, indent=4)
