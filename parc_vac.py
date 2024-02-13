@@ -44,8 +44,8 @@ def parc_vac(url):
     
     return data
 
-path = "test.json"
-path_out = "test_out.json"
+path = "vacancy_links2.json"
+path_out = "2ndpart.json"
 with open(path, "r", encoding="utf-8") as fp:
     datas = json.load(fp)
 
@@ -59,7 +59,8 @@ for data in datas:
         with open(path_out, "w", encoding="utf-8") as fp:
             json.dump(datas_out, fp, ensure_ascii=False, indent=2)
     except Exception as e:
-        with open("err.txt", "w", encoding="utf-8") as fp:
-            fp.write((str)(e))        
-            fp.write((str)(data["id_pair"][0]))  
-            fp.write((str)(data["id_pair"][1]))  
+        with open("err.txt", "a", encoding="utf-8") as fp:
+            fp.write(" field " + (str)(data["id_pair"][0]))  
+            fp.write(" spec " + (str)(data["id_pair"][1])) 
+            fp.write(" vac name " + (str)(data["link"]))  
+            fp.write(" vac name " + (str)(data["vacancy_name"]) + "\n")     
