@@ -7,7 +7,6 @@ import json
 import time
 
 
-
 def parc_vac(url):
     
     ua = UserAgent()
@@ -54,6 +53,7 @@ def parc_vac(url):
     ic(data)
     
     return data
+
 
 path = "vacancy_links2.json"
 path_out = "2ndpart.json"

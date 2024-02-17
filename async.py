@@ -5,6 +5,9 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 import json
 
+# THIS APPROACH IS NOT WORKING 
+# BECAUSE OF HHRU DETECTS TOO FAST REQUESTS 
+
 data_fields = pd.read_csv("fields.csv")
 data_spec = pd.read_csv("spec_uniq.csv")
 ua = UserAgent()
